@@ -6,7 +6,7 @@
         <div v-if="activ" :style="{width:mxwidth+'px',height:myheight+'px',background:mcolor,left:mxleft,top:mytop}"
             :class="{'mask-div':activ,'mask-hide':!activ}"></div>
         <div :style="{width:magwidth+'px',height:magheight+'px'}" :class="About?'enlarge-right':'enlarge-left'" v-if="activ">
-            <img :src="magurl" alt="" ref='enlarge' :style="{left:magleft,top:magtop,width:500+'px',height:500+'px'}">
+            <img :src="magurl" alt="" ref='enlarge' :style="{left:magleft,top:magtop}">
         </div>
     </div>
 </template>
@@ -61,11 +61,15 @@
            wide:function(){
             if (typeof (this.width) == 'number'){
                return (this.width + 'px')
+            }else{
+                return "100%"
             }
            },
            depth:function(){
             if (typeof (this.height) == 'number'){
                return (this.height + 'px')
+            }else{
+                return "100%"
             }
            }
         },
@@ -112,9 +116,6 @@
                 }, 10);
 
             }
-        },
-        updated() {
-            //this.$refs.enlarge.style.backgroundSize="500px 500px"  //有大图路径请删除
         },
     }
 </script>
