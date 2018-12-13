@@ -1,12 +1,12 @@
 <template>
     <div class="contint">
-        <img :src="imgurl" alt="" class="magnimg">
-        <div class="mask" :style="{width:width,height:height}" @mousemove="magnifier($event)" ref="elememt" @mouseout="activ=false">
+        <img :src="imgurl" alt="">
+        <div  class="mask":style="{width:wide,height:depth}" @mousemove="magnifier($event)" ref="elememt" @mouseout="activ=false">
         </div>
         <div v-if="activ" :style="{width:mxwidth+'px',height:myheight+'px',background:mcolor,left:mxleft,top:mytop}"
             :class="{'mask-div':activ,'mask-hide':!activ}"></div>
         <div :style="{width:magwidth+'px',height:magheight+'px'}" :class="About?'enlarge-right':'enlarge-left'" v-if="activ">
-            <img :src="magurl" alt="" ref='enlarge' :style="{left:magleft,top:magtop,width:500+'px',height:500+'px'}" class="picture">
+            <img :src="magurl" alt="" ref='enlarge' :style="{left:magleft,top:magtop,width:500+'px',height:500+'px'}">
         </div>
     </div>
 </template>
@@ -54,8 +54,20 @@
                 mytop: 0,
                 //大图的移动
                 magleft: 0,
-                magtop: 0
+                magtop: 0,
             }
+        },
+        computed:{
+           wide:function(){
+            if (typeof (this.width) == 'number'){
+               return (this.width + 'px')
+            }
+           },
+           depth:function(){
+            if (typeof (this.height) == 'number'){
+               return (this.height + 'px')
+            }
+           }
         },
         methods: {
             magnifier($event) {
@@ -104,11 +116,6 @@
         updated() {
             //this.$refs.enlarge.style.backgroundSize="500px 500px"  //有大图路径请删除
         },
-        created() {
-            if (typeof (this.width) == Number) {
-                this.width = this.width + 'px'
-            }
-        },
     }
 </script>
 <style lang="">
@@ -116,12 +123,12 @@
         position: relative;
     }
 
-    .magnimg {
+    .contint>img {
         width: 100%;
         height: 100%;
     }
 
-    .mask {
+    .mask{
         z-index: 1000;
         position: absolute;
         top: 0px;
@@ -158,7 +165,7 @@
         overflow: hidden;
     }
 
-    .picture {
+    .contint>div>img {
         position: relative;
     }
 </style>
