@@ -3,10 +3,10 @@
         <img :src="imgurl" alt="">
         <div  class="mask":style="{width:wide,height:depth}" @mousemove="magnifier($event)" ref="elememt" @mouseout="activ=false">
         </div>
-        <div v-if="activ" :style="{width:mxwidth+'px',height:myheight+'px',background:mcolor,left:mxleft,top:mytop}"
+        <div v-show="activ" :style="{width:mxwidth+'px',height:myheight+'px',background:mcolor,left:mxleft,top:mytop}"
             :class="{'mask-div':activ,'mask-hide':!activ}"></div>
-        <div :style="{width:magwidth+'px',height:magheight+'px'}" :class="About?'enlarge-right':'enlarge-left'" v-if="activ">
-            <img :src="magurl" alt="" ref='enlarge' :style="{left:magleft,top:magtop}">
+        <div :style="{width:magwidth+'px',height:magheight+'px'}" :class="About?'enlarge-right':'enlarge-left'" v-show="activ">
+            <img :src="magurl" alt="" ref='enlarge' :style="{left:magleft,top:magtop,width:500+'px',height:500+'px'}">
         </div>
     </div>
 </template>
@@ -101,7 +101,7 @@
                 this.mytop = y + 'px'
 
                 //大图的移动距离 = 遮挡层的移动距离 * 大图的最大移动距离 / 遮挡层的最大移动距离
-                setTimeout(() => {
+
                     //大图的最大移动距离
                     let imgMaxleft = this.$refs.enlarge.offsetWidth - this.magwidth;
                     let imgMaxtop = this.$refs.enlarge.offsetHeight - this.magheight;
@@ -112,8 +112,6 @@
                     //设置大图移动
                     this.magleft = -imgMoveLeft + 'px'
                     this.magtop = -imgMovetop + 'px'
-
-                }, 10);
 
             }
         },
