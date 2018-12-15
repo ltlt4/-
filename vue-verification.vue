@@ -123,8 +123,7 @@
                 var v_code = this.code.toLowerCase();
                 if (code == v_code) {
                     var  chunk=true;
-                } else {
-                    this.refresh();
+                }else {
                     var chunk=false;
                 }
                 this.$emit("verByValue",chunk)
