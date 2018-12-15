@@ -117,8 +117,9 @@
                     ctx.fill();
                 }
             },
+
+            //判断是否输入正确
             validate(ver) {
-                console.log(1)
                 var code = ver.toLowerCase();
                 var v_code = this.code.toLowerCase();
                 if (code == v_code) {
