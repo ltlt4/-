@@ -29,7 +29,10 @@
             },
             appce:{  //输入框样式
                 default:"small"
-            }
+            },
+            register:{ //是否刷新验证码
+               default:true
+           }
         },
         data() {
             return {
@@ -47,6 +50,12 @@
             }
         },
         methods: {
+            //是否刷新验证码
+            freshen(){
+              if(this.register){
+                  this.refresh()
+              }
+            },
             //生成一个随机数
             randomNum(min, max) {
                 return Math.floor(Math.random() * (max - min) + min);
