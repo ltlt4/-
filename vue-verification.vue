@@ -29,8 +29,8 @@
             },
             appce:{  //输入框样式
                 default:"small"
-            },
-            register:{ //是否刷新验证码
+            },        
+          register:{ //是否刷新验证码
                default:true
            }
         },
@@ -87,10 +87,10 @@
                 } else {
                     var txtArr = this.letterArr;
                 }
-
+                var a=[]
                 for (var i = 1; i <= this.num; i++) {
                     var txt = txtArr[this.randomNum(0, txtArr.length)];
-                    this.code += txt;
+                    a.push(txt)
                     ctx.font = this.randomNum(this.height / 2, this.height) + 'px SimHei'; //随机生成字体大小
                     ctx.fillStyle = this.randomColor(50, 160); //随机生成字体颜色        
                     ctx.shadowOffsetX = this.randomNum(-3, 3);
@@ -108,6 +108,10 @@
                     ctx.rotate(-deg * Math.PI / 180);
                     ctx.translate(-x, -y);
                 }
+                     if(a.length>4){
+                        a.splice(0,4)
+                     }
+                     this.code=a.join("")
                 /**绘制干扰线**/
                 for (var i = 0; i < this.num; i++) {
                     ctx.strokeStyle = this.randomColor(40, 180);
@@ -126,8 +130,6 @@
                     ctx.fill();
                 }
             },
-
-            //判断是否输入正确
             validate(ver) {
                 var code = ver.toLowerCase();
                 var v_code = this.code.toLowerCase();
@@ -136,7 +138,7 @@
                 }else {
                     var chunk=false;
                 }
-                this.$emit("verByValue",chunk)
+                this.$emit('verByValue',chunk)
             }
         },
         created() {
